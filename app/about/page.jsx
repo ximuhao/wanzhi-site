@@ -1,0 +1,2 @@
+import PageShell from '../../components/PageShell'
+export default function About(){ return <PageShell title="ABOUT"><div className="about"><p>WANZHI is a quiet sub-brand under XI MUHAO, built around the virtual model 奚晚枝. The clothes are small, thin, cold, and close to the body: washed T-shirts, skinny long sleeves, skirts, shoes, and the small objects she carries.</p><p>This is not a loud store. It is a wardrobe archive for a person who may or may not exist.</p></div></PageShell> }
