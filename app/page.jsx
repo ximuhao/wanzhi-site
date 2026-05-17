@@ -1,7 +1,10 @@
 'use client'
+import { useRouter } from 'next/navigation'
 import Nav from '../components/Nav'
 
 export default function Home() {
+  const router = useRouter()
+  
   return (
     <main className="home">
       <Nav />
@@ -9,6 +12,12 @@ export default function Home() {
         <div className="model-wrap">
           <div className="model-card">
             <img src="/IMG_0332.PNG" alt="Home model" className="home-model" />
+            <button 
+              className="top-mask-btn"
+              onClick={() => router.push('/tops')}
+              aria-label="View tops collection"
+            />
+            <img src="/top-mask.png" alt="" className="top-mask" />
           </div>
         </div>
       </section>
