@@ -18,38 +18,28 @@ a { color: inherit; text-decoration: none; }
 .stage { height: 100vh; display: grid; place-items: center; padding: 72px 18px 28px; }
 .model-wrap { position: relative; width: min(390px, 82vw); display: grid; place-items: center; }
 .model-card { position: relative; width: 100%; background: transparent; border: none; box-shadow: none; overflow: visible; display: grid; place-items: center; }
-.home-model { width: auto; max-width: 100%; max-height: 82vh; object-fit: contain; display: block; }
-.top-mask-btn { position: absolute; left: 36%; top: 20%; width: 28%; height: 20%; padding: 0; margin: 0; border: none; background: transparent; cursor: pointer; z-index: 3; }
-.skirt-mask-btn { position: absolute; left: 30%; top: 40%; width: 37%; height: 24%; padding: 0; margin: 0; border: none; background: transparent; cursor: pointer; z-index: 3; }
-.top-mask {
-  position: absolute;
-  inset: 0;
-  transform: translate(-5px, -15px) scale(1.2);
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-  opacity: 0;
-  mix-blend-mode: screen;
-  transition: opacity .2s ease-out;
-  pointer-events: none;
-  z-index: 1;
-}
+.home-model { width: 100%; height: auto; max-height: 82vh; object-fit: contain; display: block; }
 
-.skirt-mask {
-  position: absolute;
-  inset: 0;
-  transform: translate(-6px, 52px) scale(0.4);
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-  opacity: 0;
-  mix-blend-mode: screen;
-  transition: opacity .2s ease-out;
-  pointer-events: none;
-  z-index: 1;
+/* Make the whole model a single clickable object */
+.model-link { display: block; width: 100%; }
+.model-link img { width: 100%; height: auto; max-height: 82vh; object-fit: contain; display: block; transition: opacity .18s ease, filter .18s ease; }
+.model-link:hover img { opacity: .96; filter: brightness(1.04); cursor: pointer; }
+
+/* Outfit page layout */
+.outfit-page { height: 100vh; display: grid; place-items: center; padding: 72px 18px 28px; box-sizing: border-box; overflow: hidden; }
+.outfit-container { width: min(980px, 92vw); display: flex; gap: 28px; align-items: center; justify-content: center; }
+.outfit-left { flex: 1 1 48%; display: flex; align-items: center; justify-content: center; }
+.outfit-image { width: 100%; height: auto; max-height: 82vh; object-fit: contain; display: block; }
+.outfit-right { width: min(420px, 48%); display: flex; align-items: center; }
+.outfit-product-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; width: 100%; max-height: 82vh; }
+.product-card { display: flex; align-items: center; justify-content: center; border: 1px solid var(--line); background: var(--card); color: var(--muted); font-size: 12px; padding: 12px; height: calc((82vh - 48px) / 3); }
+.product-placeholder { text-align: center; }
+
+@media (max-width: 760px) {
+  .outfit-container { flex-direction: column; }
+  .outfit-right { width: 100%; }
+  .outfit-product-grid { grid-template-columns: repeat(3, 1fr); }
 }
-.top-mask-btn:hover + .top-mask,
-.skirt-mask-btn:hover + .skirt-mask { opacity: 0.14; }
 
 .model { position: absolute; inset: 0; }
 .head { position: absolute; left: 50%; top: 7.5%; width: 105px; height: 132px; transform: translateX(-50%); border-radius: 50% 50% 44% 44%; background: #dfd0bf; transition: transform .18s ease-out; }
@@ -71,12 +61,6 @@ a { color: inherit; text-decoration: none; }
 .bag { position: absolute; right: 4%; top: 41%; width: 54px; height: 160px; border: 1px solid rgba(0,0,0,.36); border-radius: 50px 50px 28px 28px; transform: rotate(-8deg); }
 .ring { position: absolute; left: 21%; top: 62%; width: 18px; height: 18px; border-radius: 50%; border: 2px solid #aaa; }
 .clip { position: absolute; right: 29%; top: 12%; width: 22px; height: 34px; border-radius: 6px; background: #b5b8ae; transform: rotate(8deg); }
-.hotspot { position: absolute; z-index: 9; border: 0; background: transparent; cursor: pointer; }
-.hotspot:hover { background: rgba(255,255,255,.08); }
-.hotspot.top-zone { left: 18%; top: 28%; width: 64%; height: 27%; }
-.hotspot.skirt-zone { left: 16%; top: 53%; width: 68%; height: 31%; }
-.hotspot.shoes-zone { left: 15%; bottom: 2%; width: 70%; height: 13%; }
-.hotspot.acc-zone { right: 0%; top: 8%; width: 34%; height: 55%; }
 .label { position: absolute; z-index: 12; left: 50%; top: 48%; transform: translate(-50%, -50%); padding: 10px 14px; border: 1px solid var(--line); background: rgba(238,236,230,.72); backdrop-filter: blur(10px); font-size: 10px; letter-spacing: .24em; pointer-events: none; }
 .home-note { position: fixed; left: 22px; bottom: 20px; font-size: 10px; letter-spacing: .22em; color: var(--muted); }
 .page-shell { min-height: 100vh; padding: 110px 22px 60px; }
@@ -93,4 +77,76 @@ h1 { margin: 0 0 52px; font-size: clamp(30px, 8vw, 92px); font-weight: 400; lett
   .model-wrap { width: min(360px, 92vw); height: 72vh; }
   .product-grid { grid-template-columns: 1fr; }
   .page-shell { padding-top: 150px; }
+}
+.outfit-page {
+  height: 100vh;
+  overflow: hidden;
+  padding: 92px 40px 32px;
+}
+
+.outfit-detail {
+  height: calc(100vh - 124px);
+  display: grid;
+  grid-template-columns: 46% 42%;
+  gap: 8vw;
+  align-items: center;
+  justify-content: center;
+}
+
+.outfit-model {
+  height: calc(100vh - 140px);
+  max-height: calc(100vh - 140px);
+  display: grid;
+  place-items: center;
+  overflow: visible;
+}
+
+.outfit-model img {
+  height: 100%;
+  width: auto;
+  object-fit: contain;
+  display: block;
+}
+
+.outfit-items {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(90px, 1fr));
+  gap: 14px;
+}
+
+.outfit-item {
+  aspect-ratio: 3 / 4;
+  border: 1px solid var(--line);
+  display: grid;
+  place-items: end start;
+  padding: 18px;
+  font-size: 11px;
+  letter-spacing: .18em;
+  color: var(--muted);
+  background: rgba(255,255,255,.12);
+}
+
+.outfit-item:hover {
+  background: rgba(255,255,255,.22);
+  color: var(--ink);
+}
+
+@media (max-width: 760px) {
+  .outfit-page {
+    height: auto;
+    overflow: visible;
+  }
+
+  .outfit-detail {
+    height: auto;
+    grid-template-columns: 1fr;
+  }
+
+  .outfit-model {
+    height: 70vh;
+  }
+
+  .outfit-items {
+    grid-template-columns: repeat(2, 1fr);
+  }
 }
