@@ -18,6 +18,13 @@ export default function Home() {
               aria-label="View tops collection"
             />
             <img src="/top-mask.png" alt="" className="top-mask" />
+            <button
+  className="skirt-mask-btn"
+  onClick={() => router.push('/skirts')}
+  aria-label="View skirts collection"
+/>
+
+<img src="/skirt-mask.png" alt="" className="skirt-mask" />
           </div>
         </div>
       </section>
