@@ -3,9 +3,9 @@ import Nav from '../../../components/Nav'
 import Link from 'next/link'
 
 const items = [
-  { name: 'TOP 01', href: '/products/top-01', image: '/top01.png' },
-  { name: 'SKIRT 01', href: '/products/skirt-01', image: '/skirt01.png' },
-  { name: 'SHOES 01', href: '/products/shoes-01', image: '/shoes01.png' },
+  { name: 'TOP 01', href: '/products/top-01', image: '/top01.PNG' },
+  { name: 'SKIRT 01', href: '/products/skirt-01', image: '/skirt01.PNG' },
+  { name: 'SHOES 01', href: '/products/shoes-01', image: '/shoes01.PNG' },
 ]
 
 export default function Outfit01() {
