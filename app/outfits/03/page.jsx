@@ -3,11 +3,16 @@ import Nav from '../../../components/Nav'
 import Link from 'next/link'
 
 const items = [
-  ['TOP 03', '/products/top-03'],
-  ['SKIRT 03', '/products/skirt-03'],
-  ['SOCKS 03', '/products/socks-03'],
-  ['SHOES 03', '/products/shoes-03'],
-  ['RING 03', '/products/ring-03'],
+  {
+    name: 'TOP 03',
+    href: '/products/top-03',
+    image: '/top03.PNG',
+  },
+  {
+    name: 'SKIRT 03',
+    href: '/products/skirt-03',
+    image: '/skirt03.PNG',
+  },
 ]
 
 export default function Outfit03() {
@@ -21,9 +26,12 @@ export default function Outfit03() {
           </div>
 
           <div className="outfit-items">
-            {items.map(([name, href]) => (
+            {items.map(({ name, href, image }) => (
               <Link href={href} className="outfit-item" key={name}>
-                <div className="product-placeholder">{name}</div>
+                <div className="product-placeholder">
+                  <img src={image} alt={name} />
+                  <span>{name}</span>
+                </div>
               </Link>
             ))}
           </div>
